@@ -1,18 +1,17 @@
 package org.Ezone.POO.model;
 
-public class Usuario extends Identity{
+public class Administrador extends Identity {
     private String nombre;
     private String apellido;
+    private String email;
 
-    public Usuario(String nombre, String apellido) {
-        super();
+    public Administrador(String nombre, String apellido, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.email = email;
     }
 
-    public Usuario() {
-        super();
-    }
+    public Administrador() {}
 
     public String getNombre() {
         return nombre;
@@ -30,11 +29,20 @@ public class Usuario extends Identity{
         this.apellido = apellido;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" +
+        return "Administrador{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

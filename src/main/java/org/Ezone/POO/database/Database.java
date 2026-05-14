@@ -1,18 +1,24 @@
 package org.Ezone.POO.database;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Database {
     private static Database instance = new Database();
 
-    public List<Object> registro = new ArrayList<>();
+   private final Map<String, List<?>> tables = new HashMap<>();
+
+   private Database() {}
 
     public static Database getInstance() {
         return instance;
     }
 
-    private void agregarDatabase(Object entidad) {
-        registro.add(entidad);
+    public<T> List<T> getTable(String tableName) {
+        return (List<T>) tables.computeIfAbsent(
+                tableName,
+                k -> new ArrayList<>());
     }
 }

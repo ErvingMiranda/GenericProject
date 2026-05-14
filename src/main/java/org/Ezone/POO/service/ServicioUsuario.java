@@ -6,22 +6,29 @@ import java.util.List;
 
 public class ServicioUsuario implements Repository<Usuario> {
 
+    private final List<Usuario>  usuarios;
+
+    public ServicioUsuario() {
+        this.usuarios = Database
+                .getInstance()
+                .getTable("usuarios");
+    }
+
     @Override
     public void guardar(Usuario entidad) {
-        Database.getInstance().registro.add(entidad);
+        usuarios.add(entidad);
     }
 
     @Override
     public Usuario buscarPorId(String id) {
-        return Database.getInstance()
-                .registro.stream()
-                .filter(s -> ((Usuario) s).getId().equals(id))
-                .map(s -> (Usuario)s)
-                .findFirst().orElse(null);
+        return usuarios.stream()
+                .filter(s -> s.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public List<Usuario> buscarTodos() {
-        return List.of();
+        return usuarios;
     }
 }
